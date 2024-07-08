@@ -1,6 +1,9 @@
-const { SQLModels } = require('../models');
-const Order = SQLModels.Order;
-const OrderItem = SQLModels.OrderItem;
+// const { SQLModels } = require('../models');
+// const Order = SQLModels.Order;
+// const OrderItem = SQLModels.OrderItem;
+
+const Order = require("../models/Order");
+const OrderItem = require("../models/OrderItem");
 
 const getAllOrders = async (req, res) => {
   try {

@@ -1,10 +1,8 @@
-const { MongoDBModels } = require('../models');
-const Review = MongoDBModels.Review;
+const Review = require('../models/Review');
 
 const getAllReviews = async (req, res) => {
-  const { bookId } = req.params;
   try {
-    const reviews = await Review.find({ bookId }).populate('customerId', 'firstName lastName');
+    const reviews = await Review.find({});
     res.json(reviews);
   } catch (err) {
     console.error(err);
@@ -13,10 +11,12 @@ const getAllReviews = async (req, res) => {
 };
 
 const createReview = async (req, res) => {
-  const { bookId, customerId, rating, comment } = req.body;
+  const { bookId, rating, reviewText } = req.body;
   try {
-    const newReview = await Review.create({ bookId, customerId, rating, comment });
+    console.log();
+    const newReview = await Review.create({ bookId, rating, reviewText });
     res.status(201).json(newReview);
+    console.log("we got error in creating");
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server Error' });

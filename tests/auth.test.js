@@ -6,7 +6,7 @@ describe('POST /api/login', () => {
     const response = await request(app)
       .post('/api/login')
       .send({
-        email: 'test@example.com',
+        email: 'varshithab.008@gmail.com',
         password: 'password123',
       })
       .expect('Content-Type', /json/)

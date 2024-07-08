@@ -1,10 +1,12 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { SQLModels } = require('../models');
-const Customer = SQLModels.Customer;
+const Customer = require('../models/Customer');
+// const { SQLModels } = require('../models');
+// const {SQLModels} =require('../models')
+// const Customer = SQLModels.Customer;
 
 const generateAccessToken = (customerId) => {
-  return jwt.sign({ customerId }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+  return jwt.sign({ customerId }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
 };
 
 const authenticateCustomer = async (req, res) => {

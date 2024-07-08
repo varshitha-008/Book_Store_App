@@ -1,9 +1,8 @@
-const { MongoDBModels } = require('../models');
-const Book = MongoDBModels.Book;
+const Book = require('../models/Book');
 
 const getAllBooks = async (req, res) => {
   try {
-    const books = await Book.find();
+    const books = await Book.findAll();
     res.json(books);
   } catch (err) {
     console.error(err);
@@ -13,6 +12,9 @@ const getAllBooks = async (req, res) => {
 
 const createBook = async (req, res) => {
   const { title, author, description } = req.body;
+  if (!title || !author) {
+    return res.status(400).json({ message: 'Title and Author are required' });
+  }
   try {
     const newBook = await Book.create({ title, author, description });
     res.status(201).json(newBook);
